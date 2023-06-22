@@ -61,13 +61,26 @@ developing your own process.
 ## Your Notes Here
 
 - Add a new toy when the toy form is submitted
+First i tried adding a new toy without making any changes
+I got an Unpermitted parameter::id
+
+After the validation i tried to post again and encountered a 5000 Internal Server Error on the terminal and NameError::Uninitialized constant ToysController::Toy
 
   - How I debugged:
+  I wrote the validations for the name, image and likesin the plant model
+
+  For the name error, i changed the Toys.create in the toyController to Toy.create 
+
+  It became successful.
+
 
 - Update the number of likes for a toy
 
   - How I debugged:
+  I added it's validation in the plant
+
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+  I added it's validation in the plant model
