@@ -5,15 +5,22 @@ class ToysController < ApplicationController
     toys = Toy.all
     render json: toys
   end
-
+  
   def create
-    toy = Toy.create(toy_params)
+    toy = Toy.find_or_create_by(toy_params)
+    toy.likes += 1
+    toy.save
     render json: toy, status: :created
-  end
+  end  
 
   def update
     toy = Toy.find_by(id: params[:id])
-    toy.update(toy_params)
+    toy.likes += 1
+    if toy.update(toy_params)
+      render json: toy
+    else
+      render json: { error: toy.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
